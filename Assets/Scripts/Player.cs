@@ -7,6 +7,9 @@ public class Player : MonoBehaviour
     [SerializeField] Bullet bulletprefab;
     [SerializeField] Transform bulletSpawnPos;
 
+    private Health healthManager;
+    private GameManager gameManager;
+
     //Get mouse position
     Camera cam;
     Vector2 MousePos
@@ -26,7 +29,8 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        healthManager = GetComponent<Health>();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
@@ -94,7 +98,13 @@ public class Player : MonoBehaviour
     {
         if (collider.CompareTag("Enemy"))
         {
+            healthManager.health -= 1;
             Debug.Log("Get Attacked!!!");
+
+            if (healthManager.health == 0)
+            {
+                gameManager.gameOver();
+            }
         }
     }
 
