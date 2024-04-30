@@ -94,7 +94,7 @@ public class Player : MonoBehaviour
     {
         if (collider.CompareTag("Enemy"))
         {
-            Debug.Log("Get Attacked!");
+            Debug.Log("Get Attacked!!!");
         }
     }
 
